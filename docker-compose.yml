@@ -1,0 +1,17 @@
+version: "2"
+services:
+  torch:
+    container_name: torch_1001rt
+    image: pytorch/pytorch:1.0.1-cuda10.0-cudnn7-runtime
+    # command: nvidia-smi
+    tty: true
+    volumes:
+      - ./:/workspace
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            # device_ids: ['1', '3']
+            # or count: 2
+            capabilities: [gpu]

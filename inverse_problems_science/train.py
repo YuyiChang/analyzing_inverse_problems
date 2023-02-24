@@ -112,8 +112,8 @@ def train_epoch(i_epoch, test=False):
             model.optim_step()
 
     if test:
-        monitoring.show_hist(out_y[:, :c.ndim_z])
-        monitoring.show_cov(out_y[:, :c.ndim_z])
+        # monitoring.show_hist(out_y[:, :c.ndim_z])
+        # monitoring.show_cov(out_y[:, :c.ndim_z])
 
         if c.test_time_functions:
             out_x = model.model(y, rev=True) 
@@ -125,10 +125,10 @@ def train_epoch(i_epoch, test=False):
     return np.mean(loss_history, axis=0)
 
 def main():
-    monitoring.restart()
+    # monitoring.restart()
 
     try:
-        monitoring.print_config()
+        # monitoring.print_config()
         t_start = time()
         for i_epoch in range(-c.pre_low_lr, c.n_epochs):
 
@@ -139,7 +139,8 @@ def main():
             train_losses = train_epoch(i_epoch)
             test_losses  = train_epoch(i_epoch, test=True)
 
-            monitoring.show_loss(np.concatenate([train_losses, test_losses]))
+            # monitoring.show_loss(np.concatenate([train_losses, test_losses]))
+            print("loss tr | ts", train_losses, test_losses)
             model.scheduler_step() 
 
     except:

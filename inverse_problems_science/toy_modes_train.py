@@ -51,17 +51,17 @@ def make_loaders(setup_type, batch_size):
 
     return test_loader, train_loader
 
-from visdom import Visdom
-viz = Visdom()
-scatter_plot = 999
+# from visdom import Visdom
+# viz = Visdom()
+# scatter_plot = 999
 
-def show_live_posteriors(out_x, out_y, x, y):
-    colors = torch.mm(torch.round(y[:, c.ndim_z:].cpu()), torch.Tensor([np.arange(8)+1]).t()).numpy().astype(int).flatten()
-    viz.scatter(X=out_x[:, :2].cpu().data.numpy(),
-                Y=colors, win=scatter_plot, opts={'markersize':9})
+# def show_live_posteriors(out_x, out_y, x, y):
+#     colors = torch.mm(torch.round(y[:, c.ndim_z:].cpu()), torch.Tensor([np.arange(8)+1]).t()).numpy().astype(int).flatten()
+#     viz.scatter(X=out_x[:, :2].cpu().data.numpy(),
+#                 Y=colors, win=scatter_plot, opts={'markersize':9})
 
 c.test_loader, c.train_loader = make_loaders('some', c.batch_size)
-c.test_time_functions = [show_live_posteriors]
+c.test_time_functions = []
 
 c.ndim_x      = 2
 c.ndim_pad_x  = 8
