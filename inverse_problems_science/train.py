@@ -140,7 +140,7 @@ def main():
             test_losses  = train_epoch(i_epoch, test=True)
 
             # monitoring.show_loss(np.concatenate([train_losses, test_losses]))
-            print("loss tr | ts", train_losses, test_losses)
+            print("{}/{} loss tr | ts".format(i_epoch+1, c.n_epochs), train_losses, test_losses)
             model.scheduler_step() 
 
     except:
